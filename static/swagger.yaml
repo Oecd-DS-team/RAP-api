@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  description: Risk Assessment Platform API
+  version: 0.0.1
+  title: RAP API
+  termsOfService: ...
+  contact:
+    email: info@axia.studio
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: 127.0.0.1:5001
+basePath: /api/
+tags:
+  - name: algorithms
+    description: Algorithms
+    externalDocs:
+      description: Find out more
+      url: http://axia.studio
+schemes:
+  - http
+paths:
+  /algorithms/{name}/execute:
+    post:
+      tags:
+        - algorithms
+      summary: execute the algorithm
+      description: ''
+      operationId: executeAlgorithm
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: name of the algorithm
+          required: true
+          type: string
+        - name: samples
+          in: formData
+          description: Samples file
+          requider: true
+          type: file
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResponse'
+  /algorithms/{name}:
+    get:
+      tags:
+        - algorithms
+      summary: Find algorithm by name
+      description: Returns a single algorithm
+      operationId: getAlgorithmByName
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: name
+          in: path
+          description: name of the algorithm
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Algorithm'
+        '400':
+          description: Invalid name supplied
+        '404':
+          description: Algorithm not found
+definitions:
+  ApiResponse:
+    type: object
+    properties:
+      name:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
+  Algorithm:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+    xml:
+      name: Algorithm
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
