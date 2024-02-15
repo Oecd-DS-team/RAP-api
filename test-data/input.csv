@@ -1,0 +1,4 @@
+numeric_item,boolean_item,labels_item,thresholds_item
+1,T,label1,10
+2,F,label2,20
+3,T,label1,15

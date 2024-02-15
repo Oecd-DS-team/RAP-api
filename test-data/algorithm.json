@@ -1,0 +1,61 @@
+{
+    "name": "TEST",
+    "scorecards": [
+        {
+            "name": "Test Scorecard",
+            "items": [
+                {
+                    "name": "numeric_item",
+                    "weight": 1.5,
+                    "type": "NUMBER"
+
+                },
+                {
+                    "name": "boolean_item",
+                    "weight": 3.5,
+                    "type": "BOOL"
+
+                },
+                {
+                    "name": "labels_item",
+                    "weight": 3.5,
+                    "type": "LABELS",
+                    "labels": [
+                        {
+                            "name": "label1",
+                            "score": 1
+                        },
+                        {
+                            "name": "label2",
+                            "score": 2
+                        }
+                    ],
+                    "default": 0
+                },
+                {
+                    "name": "thresholds_item",
+                    "weight": 1.5,
+                    "type": "THRESHOLDS",
+                    "default": 0,
+                    "thresholds": [
+                        {
+                            "min": 0,
+                            "max": 13,
+                            "score": 1
+                        },
+                        {
+                            "min": 14,
+                            "max": 22,
+                            "score": 2
+                        },
+                        {
+                            "min": 23,
+                            "max": 30,
+                            "score": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
