@@ -1,4 +1,4 @@
-from db import get_db
+from db import db
 from bson.json_util import dumps
 from flask import Blueprint, request
 from markupsafe import escape
@@ -49,7 +49,7 @@ def elaborate_values(df_values, items):
 
 @bp.route("/<name>", methods=['GET'])
 def get(name):
-    algorithm = get_db().algorithm.find_one({'name': escape(name)})
+    algorithm = db.algorithm.find_one({'name': escape(name)})
     return dumps(algorithm, indent=2)
 
 
@@ -57,7 +57,7 @@ def get(name):
 def post(name):
     f = request.files['samples']
     df = pd.read_csv(f)
-    algorithm = get_db().algorithm.find_one({'name': escape(name)})
+    algorithm = db.algorithm.find_one({'name': escape(name)})
     all_names = []
     all_codes = []
     for scorecard in algorithm['scorecards']:
