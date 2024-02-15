@@ -1,9 +1,10 @@
 import os
 from configparser import ConfigParser
-from flask import Flask, stream_template
+from flask import Flask
 from flask_swagger_ui import get_swaggerui_blueprint
 
 from algorithm import get_algorithm_blueprint
+
 
 SWAGGER_URL = '/api/docs'
 API_URL = 'http://127.0.0.1:5001/static/swagger.yaml'
@@ -27,12 +28,6 @@ app.register_blueprint(swaggerui_blueprint)
 # Algorithm blueprint
 algorithm_blueprint = get_algorithm_blueprint()
 app.register_blueprint(algorithm_blueprint)
-
-
-@app.route("/client-demo", methods=['GET'])
-def client_demo():
-    return stream_template('client-demo.html', title='Client Demo')
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
